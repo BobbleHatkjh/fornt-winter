@@ -1,5 +1,5 @@
 <template>
-    <div class="setting_bac" :style="sss">
+    <div class="setting_bac" >
 
         <!--标题栏-->
         <van-sticky>
@@ -14,7 +14,13 @@
             </van-nav-bar>
         </van-sticky>
 
-        <van-cell center title="动画效果" style="margin-top: 20px">
+
+        <div class="setting_logo">
+            <a>logo</a>
+        </div>
+
+
+        <van-cell center title="动画效果" style="margin-top: 10px">
             <van-switch
                     active-color="#ffa857"
                     v-model="animate_show"
@@ -24,12 +30,15 @@
             />
         </van-cell>
 
+        <div class="logout" @click="logOut">
+            <a>退出登陆</a>
+        </div>
+
     </div>
 </template>
 
 <script>
     import {Tabbar, TabbarItem, NavBar, Icon, Switch, Sticky, Cell} from 'vant';
-    // import sss from '../../assets/login_registor_bac.jpg'
 
     export default {
         components: {
@@ -44,15 +53,11 @@
         data(){
             return{
                 animate_show: true,
-                sss:{
-                    height:'',
-                }
+
             }
         },
         methods: {
-            getHeight(){
-                this.sss.height = window.innerHeight + 'px';
-            },
+
             animateSet(){   // 取本地animate_show
                 localStorage.getItem('animate_show') === 'true'
                     ? this.animate_show = true : this.animate_show = false;
@@ -63,6 +68,10 @@
             onClickLeft() {
                 this.$router.go(-1)
             },
+            logOut(){
+                localStorage.setItem('login','false');
+                this.$router.push('login')
+            }
         },
 
         async created(){
@@ -79,5 +88,33 @@
 <style lang="less">
     .setting_bac{
         width: 100%;
+
+        .setting_logo{
+            display: flex;
+            height: 100px;
+            width: 100%;
+            padding-top: 50px;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            margin: 20px auto 10px auto;
+        }
+
+        .logout{
+            display: flex;
+            height: 48px;
+            width: 90%;
+            margin: 20px auto;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            box-shadow: 0 0 8px #dedede;
+            background-color: white;
+
+            a{
+                color: #ff4a39;
+                font-weight: bolder;
+            }
+        }
     }
 </style>

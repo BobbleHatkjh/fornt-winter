@@ -13,7 +13,7 @@ const store = new Vuex.Store({
 
     // 定义状态
     state: {
-        Login: 'true', // 登录状态
+        Login: 'true',  // 登录状态
         home_turn: 'book',    // home active的值  #book orders my#
         page_change_status: '',   // 页面切换模式  #next back#
 

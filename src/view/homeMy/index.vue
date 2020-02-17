@@ -58,7 +58,7 @@
                 </div>
             </button-animate>
 
-            <button-animate :div_style="'grid_frame'" :animate_style="'touch_bac'">
+            <button-animate :div_style="'grid_frame'" :animate_style="'touch_bac'" @click="clickGrid('history')">
                 <div class="grid_icon">
                     <van-icon name="todo-list-o" size="24"/>
                 </div>
@@ -195,6 +195,20 @@
         methods: {
             getHeight() {
                 this.my_bac.height = window.innerHeight - 50 + 'px';
+            },
+            clickGrid(way){
+                switch (way) {
+                    case 'like':
+                        console.log('like');
+                        break;
+                    case 'history':
+                        console.log('history');
+                        this.$store.state.home_turn = 'orders';
+                        break;
+                    case 'face':
+                        console.log('face');
+                        break;
+                }
             },
             switchButton(where) {  // 进入下一级页面
                 switch (where) {

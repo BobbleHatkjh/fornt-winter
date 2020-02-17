@@ -1,26 +1,28 @@
 <template>
     <div class="login_bac" :style="sss">
 
-        <div style="height: 120px" />
-        <div class="login_test" @click="loginButton">
-            登陆 #测试#
+        <div style="height: 110px" />
+        <div class="login_logo">
+            logo
         </div>
+        <component-login v-if="ifLogin" @toRegister="changeComponent('toRe')"/>
+        <component-register v-if="!ifLogin" @toLogin="changeComponent('toLo')"/>
     </div>
 </template>
 
 <script>
-    import { Tabbar, TabbarItem, NavBar } from 'vant';
+    import componentLogin from './component_login/index.vue'
+    import componentRegister from './component_register/index.vue'
     import login_pic from '../../assets/login.png'
 
     export default {
         components: {
-            [NavBar.name]: NavBar,
-            [Tabbar.name]: Tabbar,
-            [TabbarItem.name]: TabbarItem
-
+            componentLogin,
+            componentRegister
         },
         data(){
             return{
+                ifLogin: true,
                 sss:{
                     height:'',
                     background: "url('" + login_pic + "') no-repeat center center fixed",
@@ -34,10 +36,12 @@
                 this.sss.height = window.innerHeight + 'px';
                 // this.h_b_bac.filter = "blur(10px)"
             },
-            loginButton(){
-                localStorage.setItem('login','true');
-                this.$router.push('home')
+            changeComponent(way){
+                way === 'toRe' ? this.ifLogin = false : this.ifLogin = true
             }
+        },
+        beforeCreate() {
+            localStorage.getItem('login') === 'true' && this.$router.push('home');
         },
         async created(){
             this.getHeight();
@@ -53,15 +57,13 @@
     .login_bac{
         width: 100%;
 
-        .login_test{
+        .login_logo{
             display: flex;
             height: 50px;
-            width: 80%;
-            margin: auto;
+            width: 100%;
             justify-content: center;
             align-items: center;
-            color: #ffa857;
-            background-color: #646464;
         }
+
     }
 </style>
