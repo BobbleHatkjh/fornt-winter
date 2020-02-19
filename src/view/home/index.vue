@@ -3,7 +3,7 @@
         <div class="home_bac" >
             <home_book v-if="active === 'book'" />
             <home_order v-if="active === 'orders'" />
-            <home_my v-if="active === 'my'" />
+            <home_my v-if="active === 'my'" @BarChange="BarChange" />
         </div>
 
 
@@ -51,6 +51,9 @@
             tabChange(active){
                 this.$store.state.page_change_status = 'next';  // 页面切换模式
                 this.$store.state.home_turn = active
+            },
+            BarChange(e){
+                this.active = e
             },
             quitApp(){
                 console.log('退出？');

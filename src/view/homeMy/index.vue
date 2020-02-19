@@ -1,6 +1,6 @@
 <template>
     <div class="home_my" :style="my_bac">
-        <div style="height: 20px"></div>
+        <div style="height: 16px"></div>
 
         <!--        个人信息-->
         <div class="my_frame" :style="home_my_bac">
@@ -34,20 +34,27 @@
 
             <div class="my_nike">
                 <div class="my_nike_name">
-                    绒球帽
+                    康嘉禾
                 </div>
                 <div class="my_nike_phone">
                     137****9501
                 </div>
+<!--                <div class="my_discord_frame">-->
+<!--                    <div class="my_discord">-->
+<!--                        <van-icon name="underway" />-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
 
-            <div class="my_edit">
-                <van-icon name="edit" size="22"/>
+
+
+            <div class="my_edit" @click="switchButton('person')">
+                <van-icon name="edit" size="22" />
             </div>
 
         </div>
 
-        <!--        GRID-->
+        <!--GRID-->
         <div class="my_grid">
             <button-animate :div_style="'grid_frame'" :animate_style="'touch_bac'">
                 <div class="grid_icon">
@@ -203,6 +210,7 @@
                         break;
                     case 'history':
                         console.log('history');
+                        this.$emit('BarChange','orders');
                         this.$store.state.home_turn = 'orders';
                         break;
                     case 'face':
@@ -215,7 +223,8 @@
                     case 'setting':
                         this.$router.push('setting');
                         break;
-                    case 'info':
+                    case 'person':
+                        this.$router.push('proFile');
                         break;
                     default:
                         break;
@@ -238,6 +247,7 @@
 
     .home_my {
         width: 100%;
+        user-select: none;
 
         .my_frame {
             display: flex;
@@ -311,35 +321,47 @@
             }
 
             .my_nike {
-                height: 100px;
                 width: 100px;
                 margin-left: 15px;
                 padding-top: 30px;
+                color: white;
 
                 .my_nike_name {
                     height: 30px;
-                    font-size: 20px;
+                    font-size: 19px;
                     font-weight: bolder;
-                    /*justify-content:center;*/
                     align-items: center;
-                    color: #161616;
                 }
 
                 .my_nike_phone {
                     height: 30px;
-                    font-size: 18px;
+                    font-size: 16px;
                     font-weight: bolder;
-                    /*justify-content:center;*/
                     align-items: center;
-                    color: #ffa857;
+                }
+                .my_discord_frame{
+                    display: flex;
+                    height: 30px;
+                    width: 150px;
+
+                    .my_discord{
+                        display: block;
+                        height: 66px;
+                        width: 56px;
+                        justify-content: center;
+                        border-radius: 10px;
+                        background-color: #ffa857;
+                    }
                 }
             }
+
+
 
             .my_edit {
                 height: 22px;
                 width: 22px;
                 margin: 0 0 auto auto;
-                padding: 15px;
+                padding: 16px;
                 color: #ffa857;
             }
         }

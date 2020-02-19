@@ -71,9 +71,16 @@ const routes = [
     },
     {
         name: 'setting',
-        component: () => import('./view/setting'),
+        component: () => import('./view/homeMy/setting'),
         meta: {
             title: '设置'
+        }
+    },
+    {
+        name: 'proFile',
+        component: () => import('./view/homeMy/personFile'),
+        meta: {
+            title: '个人资料'
         }
     },
 

@@ -22,7 +22,10 @@
                             <a>{{order.state}}</a>
                             <span>¥ {{order.price}}</span>
                         </div>
-
+                        <div class="order_line" />
+                        <div class="order_note">
+                            <a>{{order.hotel}}</a>
+                        </div>
                     </div>
 
                 </van-tab>
@@ -35,14 +38,12 @@
 </template>
 
 <script>
-    import {Tabbar, TabbarItem, NavBar, Tab, Tabs} from 'vant';
-    import sss from '../../assets/order_bac.png'
+    import { NavBar, Tab, Tabs} from 'vant';
+    import order_bac_pic from '../../assets/order_bac.png'
 
     export default {
         components: {
             [NavBar.name]: NavBar,
-            [Tabbar.name]: Tabbar,
-            [TabbarItem.name]: TabbarItem,
             [Tab.name]: Tab,
             [Tabs.name]: Tabs,
         },
@@ -51,14 +52,14 @@
                 tab_active: 0,  // 订单tab的浏览active
                 sss:{
                     height:'',
-                    background: "url('" + sss + "') no-repeat center center fixed",
+                    background: "url('" + order_bac_pic + "') no-repeat center center fixed",
                     backgroundSize: "cover",
                 },
                 order_list:[
                     {
                         id: 10969,
                         state: '待入住',
-                        hotel: '汉庭大学城店',
+                        hotel: '汉庭西青大学城店',
                         date: '',
                         night_num: 2,
                         price: '207',
@@ -106,14 +107,16 @@
         color: #323232;
 
         .order_tab{
-            width: 88%;
+            width: 90%;
             margin: auto;
 
             .order_frame{
-                height: 130px;
+                height: 140px;
                 width: 100%;
-                margin: 20px auto;
+                margin: 15px auto;
                 border-radius: 12px;
+                animation: order_move 0.5s;
+                animation-direction: alternate;
                 background-color: rgba(255, 255, 255, 1);
 
                 .order_state{
@@ -121,6 +124,7 @@
                     height: 40px;
                     width: 90%;
                     margin: auto;
+                    padding-top: 2px;
                     justify-content: space-between;
                     align-items: center;
                     a{
@@ -128,8 +132,23 @@
                     }
                     span{
                         color: #ffa857;
-                        font-size: 18px;
+                        font-size: 16px;
                         font-weight: bolder;
+                    }
+                }
+                .order_line{
+                    height: 0;
+                    width: 88%;
+                    margin: auto;
+                    border-bottom: 1px dashed rgba(255, 168, 87, 0.66);
+
+                }
+                .order_note{
+                    width: 90%;
+                    margin: 10px auto;
+
+                    a{
+
                     }
                 }
 
@@ -138,5 +157,20 @@
             }
         }
 
+
+    }
+
+    ::-webkit-scrollbar {
+        width: 0 ;
+    }
+
+    /*进入 的动画效果*/
+    @keyframes order_move {
+        from {
+            margin-top: 100px;
+        }
+        to {
+            margin-top: 15px;
+        }
     }
 </style>
