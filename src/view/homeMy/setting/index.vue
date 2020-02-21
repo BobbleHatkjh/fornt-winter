@@ -21,6 +21,12 @@
             <button-animate :div_style="'setting_check'" :animate_style="'touch_bac'">
                 检查版本
             </button-animate>
+            <button-animate :div_style="'setting_check'" :animate_style="'touch_bac'">
+                关于应用
+            </button-animate>
+            <button-animate :div_style="'setting_check'" :animate_style="'touch_bac'">
+                清除缓存
+            </button-animate>
             <van-cell center title="动画效果" style="color: #e6974f">
                 <van-switch
                         active-color="#ffa857"
@@ -105,6 +111,8 @@
             box-shadow: 0 0 8px #dedede;
             align-items: center;
             background-color: white;
+            animation: slip_move 0.5s;
+            animation-direction: alternate;
         }
 
         .setting_frame {
@@ -116,6 +124,8 @@
             overflow: hidden;
             font-size: 14px;
             color: #e6974f;
+            animation: slip_move 0.5s;
+            animation-direction: alternate;
 
             .setting_check {
                 display: flex;
@@ -135,6 +145,8 @@
             border-radius: 12px;
             box-shadow: 0 0 8px #dedede;
             background-color: white;
+            animation: slip_move 0.5s;
+            animation-direction: alternate;
 
             a {
                 color: #ff4a39;
@@ -142,4 +154,9 @@
             }
         }
     }
+    ::-webkit-scrollbar {
+        width: 0 ;
+    }
+
+
 </style>

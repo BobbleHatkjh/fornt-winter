@@ -76,6 +76,8 @@
             border-radius: 12px;
             background-color: white;
             box-shadow: 0 0 8px #dedede;
+            animation: slip_move 0.5s;
+            animation-direction: alternate;
         }
 
         .profile_frame{
@@ -86,6 +88,8 @@
             overflow: hidden;
             background-color: white;
             box-shadow: 0 0 8px #dedede;
+            animation: slip_move 0.5s;
+            animation-direction: alternate;
 
             .profile_field{
                 margin: 0 auto;
@@ -104,9 +108,15 @@
             background-color: #ffa857;
             color: white;
             box-shadow: 0 0 8px #dedede;
+            animation: slip_move 0.5s;
+            animation-direction: alternate;
         }
 
 
 
     }
+    ::-webkit-scrollbar {
+        width: 0 ;
+    }
+
 </style>

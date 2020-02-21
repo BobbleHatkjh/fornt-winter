@@ -62,11 +62,41 @@ const routes = [
     },
 
 
+
+
     {
-        name: 'login',
-        component: () => import('./view/login'),
+        name: 'proFile',
+        component: () => import('./view/homeMy/personFile'),
         meta: {
-            title: '登陆和注册'
+            title: '个人资料'
+        }
+    },
+    {
+        name: 'vip',
+        component: () => import('./view/homeMy/VIP'),
+        meta: {
+            title: '会员计划'
+        }
+    },
+    {
+        name: 'overview',
+        component: () => import('./view/homeMy/overview'),
+        meta: {
+            title: '最近浏览'
+        }
+    },
+    {
+        name: 'normalInfo',
+        component: () => import('./view/homeMy/normalInfo'),
+        meta: {
+            title: '常用信息'
+        }
+    },
+    {
+        name: 'service',
+        component: () => import('./view/homeMy/service'),
+        meta: {
+            title: '智能客服'
         }
     },
     {
@@ -76,11 +106,14 @@ const routes = [
             title: '设置'
         }
     },
+
+
+
     {
-        name: 'proFile',
-        component: () => import('./view/homeMy/personFile'),
+        name: 'login',
+        component: () => import('./view/login'),
         meta: {
-            title: '个人资料'
+            title: '登陆和注册'
         }
     },
 

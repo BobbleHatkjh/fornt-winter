@@ -1,8 +1,8 @@
 <template>
     <div class="home_my" :style="my_bac">
-        <div style="height: 16px"></div>
+        <div style="height: 1px" />
 
-        <!--        个人信息-->
+        <!--个人信息-->
         <div class="my_frame" :style="home_my_bac">
             <div class="my_circle">
                 <div class="my_diamond">
@@ -86,7 +86,7 @@
 
         <!--        下面的选项-->
         <div class="my_list">
-            <button-animate :div_style="'my_list_frame'" :animate_style="'touch_bac'">
+            <button-animate :div_style="'my_list_frame'" :animate_style="'touch_bac'" @click="switchButton('vip')">
                 <div class="my_list_icon">
                     <van-icon name="diamond-o" size="20"/>
                 </div>
@@ -98,7 +98,7 @@
                 </div>
             </button-animate>
 
-            <button-animate :div_style="'my_list_frame'" :animate_style="'touch_bac'">
+            <button-animate :div_style="'my_list_frame'" :animate_style="'touch_bac'" @click="switchButton('overview')">
                 <div class="my_list_icon">
                     <van-icon name="eye-o" size="20"/>
                 </div>
@@ -110,7 +110,7 @@
                 </div>
             </button-animate>
 
-            <button-animate :div_style="'my_list_frame'" :animate_style="'touch_bac'">
+            <button-animate :div_style="'my_list_frame'" :animate_style="'touch_bac'" @click="switchButton('info')">
                 <div class="my_list_icon">
                     <van-icon name="description" size="20"/>
                 </div>
@@ -125,7 +125,7 @@
                 </div>
             </button-animate>
 
-            <button-animate :div_style="'my_list_frame'" :animate_style="'touch_bac'">
+            <button-animate :div_style="'my_list_frame'" :animate_style="'touch_bac'" @click="switchButton('service')">
                 <div class="my_list_icon">
                     <van-icon name="service-o" size="20"/>
                 </div>
@@ -160,7 +160,6 @@
                     <van-icon name="arrow" size="20"/>
                 </div>
             </button-animate>
-
 
         </div>
 
@@ -218,13 +217,25 @@
                         break;
                 }
             },
-            switchButton(where) {  // 进入下一级页面
-                switch (where) {
-                    case 'setting':
-                        this.$router.push('setting');
-                        break;
+            switchButton(way) {  // 进入下一级页面
+                switch (way) {
                     case 'person':
                         this.$router.push('proFile');
+                        break;
+                    case 'vip':
+                        this.$router.push('vip');
+                        break;
+                    case 'overview':
+                        this.$router.push('overview');
+                        break;
+                    case 'info':
+                        this.$router.push('normalInfo');
+                        break;
+                    case 'service':
+                        this.$router.push('service');
+                        break;
+                    case 'setting':
+                        this.$router.push('setting');
                         break;
                     default:
                         break;
@@ -254,8 +265,10 @@
             height: 180px;
             width: 91%;
             border-radius: 12px;
-            margin: auto;
+            margin: 15px auto;
             box-shadow: 0 0 8px #cccccc;
+            /*animation: slip_move 0.5s;*/
+            /*animation-direction: alternate;*/
 
             .my_circle {
                 display: block;
@@ -370,11 +383,13 @@
             display: flex;
             height: 60px;
             width: 91%;
-            margin: 10px auto;
+            margin: 13px auto;
             border-radius: 12px;
             box-shadow: 0 0 8px #dedede;
             justify-content: space-around;
             background-color: white;
+            animation: slip_move 0.5s;
+            animation-direction: alternate;
 
             .grid_frame {
                 height: 100%;
@@ -413,6 +428,8 @@
             box-shadow: 0 0 8px #dedede;
             background-color: white;
             overflow: hidden;
+            animation: slip_move 0.5s;
+            animation-direction: alternate;
 
             .my_list_frame {
                 display: flex;
@@ -458,6 +475,16 @@
                 }
 
             }
+        }
+    }
+
+    /*进入 的动画效果*/
+    @keyframes slip_move {
+        from {
+            margin-top: 60px;
+        }
+        to {
+            margin-top: 15px;
         }
     }
 </style>

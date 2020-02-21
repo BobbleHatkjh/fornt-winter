@@ -1,7 +1,9 @@
 <template>
     <div class="order_bac" :style="sss">
 
-        <div style="height: 20px" />
+        <div class="order_service">
+            <van-icon name="service-o" />
+        </div>
         <div class="order_tab">
             <van-tabs
                     v-model="tab_active"
@@ -38,12 +40,13 @@
 </template>
 
 <script>
-    import { NavBar, Tab, Tabs} from 'vant';
+    import {Icon, NavBar, Tab, Tabs} from 'vant';
     import order_bac_pic from '../../assets/order_bac.png'
 
     export default {
         components: {
             [NavBar.name]: NavBar,
+            [Icon.name]: Icon,
             [Tab.name]: Tab,
             [Tabs.name]: Tabs,
         },
@@ -60,7 +63,10 @@
                         id: 10969,
                         state: '待入住',
                         hotel: '汉庭西青大学城店',
-                        date: '',
+                        date: {
+                            start: '2/2',
+                            end: ''
+                        },
                         night_num: 2,
                         price: '207',
                         type: '精品大床房'
@@ -106,6 +112,15 @@
         width: 100%;
         color: #323232;
 
+        .order_service{
+            display: flex;
+            height: 10px;
+            padding: 12px;
+            flex-direction:row-reverse;
+            font-size: 20px;
+            color: white;
+        }
+
         .order_tab{
             width: 90%;
             margin: auto;
@@ -129,6 +144,7 @@
                     align-items: center;
                     a{
                         font-size: 14px;
+                        color: #eb9754;
                     }
                     span{
                         color: #ffa857;
@@ -167,7 +183,7 @@
     /*进入 的动画效果*/
     @keyframes order_move {
         from {
-            margin-top: 100px;
+            margin-top: 50px;
         }
         to {
             margin-top: 15px;
