@@ -57,16 +57,20 @@
 
             },
 
-            originDate(){  // 初始时间
+            originDate(){   // 初始时间
                 let dateObj = {date_num:1,in:{},out:{}};
                 const nowDate = new Date;
                 const tomorrow = new Date;
                 tomorrow.setTime(tomorrow.getTime()+24*60*60*1000);
 
+                dateObj.in.unicodeTime = Date.parse(nowDate);
+                dateObj.in.jsTime = nowDate;
                 dateObj.in.month = nowDate.getMonth() + 1;
                 dateObj.in.date = nowDate.getDate();
                 dateObj.in.week = "日一二三四五六".charAt(nowDate.getDay());
 
+                dateObj.out.unicodeTime = Date.parse(tomorrow);
+                dateObj.out.jsTime = tomorrow;
                 dateObj.out.month = tomorrow.getMonth() + 1;
                 dateObj.out.date = tomorrow.getDate();
                 dateObj.out.week = "日一二三四五六".charAt(tomorrow.getDay());

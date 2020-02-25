@@ -58,9 +58,8 @@
 <style lang="less">
 
     .back_fake_frame{
-        height: 200px;
         width: 91%;
-        margin: -13px auto 0 auto;
+        margin: -20px auto 0 auto;
 
         .back_fake_stick{
             height: 48px;
@@ -72,7 +71,7 @@
         .fake_book_date {
             display: flex;
             width: 100%;
-            margin: 17px auto 15px auto;
+            margin: 15px auto;
             justify-content: space-between;
             background-color: rgba(0,0,0,0);
 

@@ -416,7 +416,7 @@
 
         .back_animate_css{
             position: absolute;
-            top: 404px;
+            top: 395px;
             height: 48px;
             width: 100%;
             margin: auto;
@@ -442,7 +442,7 @@
             height: 100%;
         }
         to {
-            top: 404px;
+            top: 395px;
             height: 48px;
         }
     }

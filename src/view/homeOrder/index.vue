@@ -28,11 +28,39 @@
                         <div class="order_note">
                             <a>{{order.hotel}}</a>
                         </div>
+                        <div class="order_time">
+                            <a>共{{order.night_num}}晚 {{order.type}}</a>
+                        </div>
+                        <div class="order_reset">
+                            <a>特殊操作</a>
+                        </div>
                     </div>
 
                 </van-tab>
 
-                <van-tab title="历史订单">内容 2</van-tab>
+                <van-tab title="历史订单">
+                    <div class="order_frame"
+                         v-for="order in order_list"
+                         :key="order.id"
+                    >
+                        <div class="order_state">
+                            <a>{{order.state}}</a>
+                            <span>¥ {{order.price}}</span>
+                        </div>
+                        <div class="order_line" />
+                        <div class="order_note">
+                            <a>{{order.hotel}}</a>
+                        </div>
+                        <div class="order_time">
+                            <a>共{{order.night_num}}晚 {{order.type}}</a>
+                        </div>
+                    </div>
+                </van-tab>
+
+                <van-tab title="全部订单">
+
+                </van-tab>
+
             </van-tabs>
         </div>
 
@@ -64,8 +92,8 @@
                         state: '待入住',
                         hotel: '汉庭西青大学城店',
                         date: {
-                            start: '2/2',
-                            end: ''
+                            start: '1582539844000',
+                            end: '1582539969000'
                         },
                         night_num: 2,
                         price: '207',
@@ -75,7 +103,10 @@
                         id: 10970,
                         state: '入住中',
                         hotel: '汉庭滨江道店',
-                        date: '',
+                        date: {
+                            start: '1582539844000',
+                            end: '1582539969000'
+                        },
                         night_num: 1,
                         price: '267',
                         type: '精品大床房'
@@ -122,13 +153,13 @@
         }
 
         .order_tab{
-            width: 90%;
+            width: 100%;
             margin: auto;
 
             .order_frame{
                 height: 140px;
-                width: 100%;
-                margin: 15px auto;
+                width: 90%;
+                margin: 15px auto 15px auto;
                 border-radius: 12px;
                 animation: order_move 0.5s;
                 animation-direction: alternate;
@@ -137,14 +168,14 @@
                 .order_state{
                     display: flex;
                     height: 40px;
-                    width: 90%;
+                    /*width: 90%;*/
                     margin: auto;
-                    padding-top: 2px;
+                    padding: 2px 16px 0 16px;
                     justify-content: space-between;
                     align-items: center;
                     a{
                         font-size: 14px;
-                        color: #eb9754;
+                        color: #faa357;
                     }
                     span{
                         color: #ffa857;
@@ -160,12 +191,31 @@
 
                 }
                 .order_note{
-                    width: 90%;
-                    margin: 10px auto;
+                    margin: 10px auto 0 auto;
+                    padding-left: 16px;
 
                     a{
 
                     }
+                }
+                .order_time{
+                    margin: 4px auto 0 auto;
+                    padding-left: 16px;
+                    font-size: 13px;
+                    color: #646464;
+                }
+                .order_reset{
+                    display: flex;
+                    height: 26px;
+                    width: 72px;
+                    margin: 0 16px auto auto;
+                    /*background-color: rgba(255, 168, 87, 0.76);*/
+                    border-radius: 8px;
+                    border: 1px solid rgba(255, 168, 87, 0.75);
+                    font-size: 14px;
+                    color: #faa357;
+                    justify-content: center;
+                    align-items: center;
                 }
 
 

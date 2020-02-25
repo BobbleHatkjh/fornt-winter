@@ -120,7 +120,7 @@
             border-radius: 12px;
             box-shadow: 0 0 8px #dedede;
             background-color: white;
-            animation: hotel_move 0.4s;
+            animation: hotel_move 400ms;
             animation-direction: alternate;
             -webkit-animation-direction: alternate;
             overflow: hidden;

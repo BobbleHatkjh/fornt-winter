@@ -269,8 +269,6 @@
             async getHeight() {
                 this.date_chose = this.$store.state.date_origin;
                 this.hotel_info = await this.detailMap(this.$store.state.data_hotel_info);
-
-
                 this.detail.height = window.innerHeight + 'px';
                 this.detail_frame.height = window.innerHeight + 'px';
             },
@@ -330,6 +328,8 @@
 
             formatDate(date) {
                 return {
+                    unicodeTime: Date.parse(date),
+                    jsTime: date,
                     month: date.getMonth() + 1,
                     date: date.getDate(),
                     week: "日一二三四五六".charAt(date.getDay())
@@ -342,7 +342,7 @@
                 this.date_chose.date_num = (end - start) / 3600 / 24000;
                 this.detail_date = false;
 
-                console.log(this.date_chose, this.date_chose.date_num);
+                console.log(this.date_chose);
             },
 
         },

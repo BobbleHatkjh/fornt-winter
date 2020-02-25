@@ -14,7 +14,6 @@
         </van-nav-bar>
 
         <div class="book_bac">
-            <div style="height: 10px"></div>
 
             <!--地址选项框-->
             <div class="my_position"
@@ -29,7 +28,7 @@
             </div>
 
             <!--时间选项框-->
-            <div class="book_date">
+            <div class="book_date" :class="local_animate && 'my_p_a_1'">
                 <div class="date_chose" @click="show_date = true">
                     <div class="date_chose_m_w">
                         <div class="date_chose_m_w_div">
@@ -259,6 +258,8 @@
 
             formatDate(date) {
                 return {
+                    unicodeTime: Date.parse(date),
+                    jsTime: date,
                     month: date.getMonth() + 1,
                     date: date.getDate(),
                     week: "日一二三四五六".charAt(date.getDay())
@@ -308,26 +309,26 @@
             color: #ffa857;
 
             .my_p_a_1 {
-                animation: frame_move 0.5s;
+                animation: book_move 0.4s;
             }
 
             .my_p_a_2 {
-                animation: frame_move 0.7s;
+                animation: book_move 0.6s;
             }
 
             .my_p_a_3 {
-                animation: frame_move 0.9s;
+                animation: book_move 0.8s;
             }
 
             .my_p_a_4 {
-                animation: frame_move 1.1s;
+                animation: book_move 1s;
             }
 
             .my_position {
                 display: flex;
                 height: 48px;
                 width: 91%;
-                margin: 12px 4.5%;
+                margin: 15px 4.5%;
                 border-radius: 12px;
                 justify-content: center;
                 animation-direction: alternate;
@@ -361,7 +362,7 @@
             .book_date {
                 display: flex;
                 width: 91%;
-                margin: 17px auto 15px auto;
+                margin: 15px auto;
                 justify-content: space-between;
 
                 .date_chose {
@@ -560,6 +561,16 @@
         }
         to {
             width: 91%;
+        }
+    }
+
+    /*进入 的动画效果*/
+    @keyframes book_move {
+        from {
+            margin-top: 50px;
+        }
+        to {
+            margin-top: 15px;
         }
     }
 
