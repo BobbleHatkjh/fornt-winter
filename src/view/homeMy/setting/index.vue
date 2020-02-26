@@ -150,7 +150,6 @@
 
             a {
                 color: #ff4a39;
-                font-weight: bolder;
             }
         }
     }

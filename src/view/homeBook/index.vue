@@ -75,6 +75,7 @@
                 dateObj.out.date = tomorrow.getDate();
                 dateObj.out.week = "日一二三四五六".charAt(tomorrow.getDay());
                 this.$store.state.date_origin = dateObj;
+                // console.log(dateObj);
             },
 
             ttt(){

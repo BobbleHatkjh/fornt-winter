@@ -316,9 +316,8 @@
                 border-radius: 12px;
                 justify-content: center;
                 align-items: center;
-                font-weight: bolder;
                 background-color: #ffa857;
-                font-size: 20px;
+                font-size: 18px;
                 color: white;
             }
 

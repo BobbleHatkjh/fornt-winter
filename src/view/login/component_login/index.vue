@@ -20,7 +20,7 @@
         </div>
 
         <div class="login_button" @click="loginButton" :style="ifOk && okStyle">
-            登陆
+            <a>登陆</a>
         </div>
         <div class="login_change">
             <div>忘记密码</div>
@@ -45,7 +45,8 @@
                 ifOk: false,
                 okStyle:{
                     backgroundColor: '#ffa857',
-                    color: 'white'
+                    color: 'white',
+                    width: '80%'
                 }
             }
         },
@@ -115,7 +116,6 @@
             justify-content: center;
             font-size: 14px;
             color: #ffa857;
-            font-weight: bolder;
 
             div{
                 height: 25px;
@@ -126,15 +126,15 @@
         .login_button{
             display: flex;
             height: 48px;
-            width: 80%;
+            width: 30%;
             margin: 14px auto 8px auto;
             justify-content: center;
-            transition: background-color 500ms, color 500ms;
+            transition: background-color 500ms, color 500ms, width 500ms;
             align-items: center;
             border-radius: 12px;
-            color: #ffa857;
-            font-weight: bolder;
-            background-color: #5e5e5e;
+            color: #686868;
+
+            /*font-weight: bolder;*/
         }
     }
 </style>

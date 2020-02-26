@@ -29,10 +29,13 @@
                             <a>{{order.hotel}}</a>
                         </div>
                         <div class="order_time">
-                            <a>共{{order.night_num}}晚 {{order.type}}</a>
+                            <a>{{order.date.startMonth}}月{{order.date.startDay}}日-{{order.date.endMonth}}月{{order.date.endDay}}日
+                                共{{order.night_num}}晚
+                                {{order.type}}
+                            </a>
                         </div>
                         <div class="order_reset">
-                            <a>特殊操作</a>
+                            <a>#测试#</a>
                         </div>
                     </div>
 
@@ -57,9 +60,9 @@
                     </div>
                 </van-tab>
 
-                <van-tab title="全部订单">
+<!--                <van-tab title="全部订单">-->
 
-                </van-tab>
+<!--                </van-tab>-->
 
             </van-tabs>
         </div>
@@ -86,49 +89,33 @@
                     background: "url('" + order_bac_pic + "') no-repeat center center fixed",
                     backgroundSize: "cover",
                 },
-                order_list:[
-                    {
-                        id: 10969,
-                        state: '待入住',
-                        hotel: '汉庭西青大学城店',
-                        date: {
-                            start: '1582539844000',
-                            end: '1582539969000'
-                        },
-                        night_num: 2,
-                        price: '207',
-                        type: '精品大床房'
-                    },
-                    {
-                        id: 10970,
-                        state: '入住中',
-                        hotel: '汉庭滨江道店',
-                        date: {
-                            start: '1582539844000',
-                            end: '1582539969000'
-                        },
-                        night_num: 1,
-                        price: '267',
-                        type: '精品大床房'
-                    },
-                    {
-                        id: 10971,
-                        state: '未付款',
-                        hotel: '汉庭滨江道店',
-                        date: '',
-                        night_num: 1,
-                        price: '267',
-                        type: '精品大床房'
-                    }
-                ]
+                order_list:[]
             }
         },
         methods: {
             getHeight(){
                 this.sss.height = window.innerHeight + 'px';
             },
+            initData(order_data){
+                // const order_show = [];
+                order_data.map(
+                    (item) => {
+                        const editDate = new Date();
+                        editDate.setTime(item.date.start);
+                        item.date.startMonth = editDate.getMonth() + 1;
+                        item.date.startDay = editDate.getDate();
+                        editDate.setTime(item.date.end);
+                        item.date.endMonth = editDate.getMonth() + 1;
+                        item.date.endDay = editDate.getDate();
+                        item.night_num = parseInt((item.date.end - item.date.start) / 86400000)
+                    }
+                );
+                this.order_list = order_data;
+                // console.log(this.order_list);
+            }
         },
         async created(){
+            await this.initData(this.$store.state.order_list);
             this.getHeight();
 
         },
@@ -146,7 +133,7 @@
         .order_service{
             display: flex;
             height: 10px;
-            padding: 12px;
+            padding: 14px;
             flex-direction:row-reverse;
             font-size: 20px;
             color: white;
@@ -167,10 +154,10 @@
 
                 .order_state{
                     display: flex;
-                    height: 40px;
+                    height: 34px;
                     /*width: 90%;*/
                     margin: auto;
-                    padding: 2px 16px 0 16px;
+                    padding: 4px 16px 0 16px;
                     justify-content: space-between;
                     align-items: center;
                     a{
@@ -199,9 +186,9 @@
                     }
                 }
                 .order_time{
-                    margin: 4px auto 0 auto;
+                    margin: 5px auto;
                     padding-left: 16px;
-                    font-size: 13px;
+                    font-size: 12px;
                     color: #646464;
                 }
                 .order_reset{

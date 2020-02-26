@@ -327,7 +327,7 @@
                         align-items: center;
                         font-size: 14px;
                         color: #505050;
-                        font-weight: bolder;
+                        font-weight: 500;
                         background-color: #ffa857;
                     }
                 }

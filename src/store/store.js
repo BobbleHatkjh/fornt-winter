@@ -17,7 +17,7 @@ const store = new Vuex.Store({
         home_turn: 'book',    // home active的值  #book orders my#
         page_change_status: '',   // 页面切换模式  #next back#
 
-        date_origin: {
+        date_origin: {  // 初始日期
             date_num: 1,
             in: {
                 month: 0,
@@ -29,7 +29,44 @@ const store = new Vuex.Store({
                 date: 0,
                 week: "日"
             }
-        },  // 初始日期
+        },
+
+        order_list:[  // 我的订单部分
+            {
+                id: 10969,
+                state: '待入住',
+                hotel: '汉庭西青大学城店',
+                date: {
+                    start: 1582675264000,
+                    end: 1582761701000
+                },
+                price: '207',
+                type: '精品大床房'
+            },
+            {
+                id: 10970,
+                state: '入住中',
+                hotel: '汉庭滨江道店',
+                date: {
+                    start: 1582675264000,
+                    end: 1582761701000
+                },
+                price: '301',
+                type: '精品大床房'
+            },
+            {
+                id: 10971,
+                state: '未付款',
+                hotel: '汉庭滨江道店',
+                date: {
+                    start: 1582675264000,
+                    end: 1582961701000
+                },
+                price: '267',
+                type: '精品大床房'
+            }
+        ],
+
 
         data_hotel_list: [  // 酒店列表
             {

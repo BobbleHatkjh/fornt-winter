@@ -30,7 +30,7 @@
             />
             <div class="register_word">发送验证码</div>
         </div>
-        <div class="login_test" @click="loginButton">
+        <div class="register_button" @click="loginButton">
             注册
         </div>
         <div class="register_change">
@@ -129,18 +129,17 @@
             }
         }
 
-        .login_test{
+        .register_button{
             display: flex;
             height: 48px;
-            width: 80%;
+            width: 30%;
             margin: 14px auto 8px auto;
             justify-content: center;
-            transition: background-color 500ms, color 500ms;
+            transition: background-color 500ms, color 500ms, width 500ms;
             align-items: center;
             border-radius: 12px;
             color: #ffa857;
             font-weight: bolder;
-            background-color: #5e5e5e;
         }
         .register_change{
             display: flex;

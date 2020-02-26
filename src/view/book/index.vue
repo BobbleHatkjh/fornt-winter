@@ -271,7 +271,6 @@
 
                 this.date_chose.in = this.formatDate(start);
                 this.date_chose.out = this.formatDate(end);
-
             },
             showPop(what) {  // 弹出层
                 switch (what) {
@@ -431,9 +430,8 @@
                 overflow: hidden;
 
                 a {
-                    font-size: 20px;
+                    font-size: 18px;
                     color: white;
-                    font-weight: 700;
                     margin: auto;
                 }
 
