@@ -112,7 +112,6 @@
 
 <script>
     import {Tabbar, TabbarItem, NavBar, Sticky, Icon} from 'vant';
-    import sss from '../../assets/login_registor_bac.jpg'
     import lineDashed from '../../component/line/index.vue'
 
     export default {
@@ -127,7 +126,7 @@
         data() {
             return {
                 background: {
-                    img: sss
+                    img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1582791708474&di=62544418aef32f5aeeb5385729138c1d&imgtype=0&src=http%3A%2F%2Fwww.xiujukoo.com%2Fupimg%2Fallimg%2F160413%2F0850192.jpg'
                 },
                 date_chose: {  // 选择的日期
                     date_num: 1,

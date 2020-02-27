@@ -24,7 +24,7 @@
         </div>
 
         <div class="update_button">
-            更新信息
+            验证并更新
         </div>
 
 
