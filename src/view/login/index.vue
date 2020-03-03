@@ -3,7 +3,7 @@
 
         <div style="height: 110px" />
         <div class="login_logo">
-            logo
+            <img :src="logo" alt="">
         </div>
         <component-login v-if="ifLogin" @toRegister="changeComponent('toRe')"/>
         <component-register v-if="!ifLogin" @toLogin="changeComponent('toLo')"/>
@@ -14,6 +14,7 @@
     import componentLogin from './component_login/index.vue'
     import componentRegister from './component_register/index.vue'
     import login_pic from '../../assets/login.png'
+    import logo from '../../assets/logo.png'
 
     export default {
         components: {
@@ -23,6 +24,7 @@
         data(){
             return{
                 ifLogin: true,
+                logo:logo,
                 sss:{
                     height:'',
                     background: "url('" + login_pic + "') no-repeat center center fixed",
@@ -56,13 +58,19 @@
 <style lang="less">
     .login_bac{
         width: 100%;
+        user-select: none;
 
         .login_logo{
             display: flex;
-            height: 50px;
+            height: 60px;
             width: 100%;
+            margin: 10px auto;
             justify-content: center;
             align-items: center;
+
+            img{
+                height: 100%;
+            }
         }
 
     }

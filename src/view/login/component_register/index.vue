@@ -6,20 +6,15 @@
                     class="login_field"
                     v-model="phone_value"
                     placeholder="填写您常用的手机号"
+                    @input="fieldChange"
             />
         </div>
-<!--        <div class="login_phone">-->
-<!--            <van-field-->
-<!--                    class="login_field"-->
-<!--                    v-model="phone_value"-->
-<!--                    placeholder="填写您的常用邮箱"-->
-<!--            />-->
-<!--        </div>-->
         <div class="login_phone">
             <van-field
                     class="login_field"
                     v-model="re_password_value"
                     placeholder="设定您的密码"
+                    @input="fieldChange"
             />
         </div>
         <div class="login_check">
@@ -27,10 +22,11 @@
                     class="register_field_check"
                     v-model="code_value"
                     placeholder="验证码"
+                    @input="fieldChange"
             />
             <div class="register_word">发送验证码</div>
         </div>
-        <div class="register_button" @click="loginButton">
+        <div class="register_button" @click="loginButton" :style="ifOk && okStyle">
             注册
         </div>
         <div class="register_change">
@@ -41,82 +37,99 @@
 </template>
 
 <script>
-    import { Field } from 'vant';
+    import {Field} from 'vant';
 
     export default {
         components: {
             [Field.name]: Field
 
         },
-        data(){
-            return{
+        data() {
+            return {
                 phone_value: '',   // 用户手机号
                 re_password_value: '',   // 密码
-                code_value: ''    // 验证码
+                code_value: '',    // 验证码
+                ifOk: false,
+                okStyle: {
+                    backgroundColor: '#ffa857',
+                    color: 'white',
+                    width: '80%'
+                }
             }
         },
         methods: {
-            toLoginButton(){
+            fieldChange() {   // 输入框改变时触发
+                (this.phone_value !== '' && this.log_pass_value !== '' && this.code_value !== '')
+                    ?
+                    this.ifOk = true
+                    :
+                    this.ifOk = false
+
+            },
+            toLoginButton() {
                 this.$emit('toLogin');
             },
-            loginButton(){
-                localStorage.setItem('login','true');
+            loginButton() {
+                localStorage.setItem('login', 'true');
                 this.$router.push('home')
             }
         },
-        created(){
+        created() {
 
 
         },
-        destroyed(){
+        destroyed() {
 
         },
     };
 </script>
 
 <style lang="less">
-    .c_register_bac{
+    .c_register_bac {
         width: 100%;
 
-        .login_phone{
+        .login_phone {
             height: 45px;
             width: 80%;
-            margin: 15px auto ;
+            margin: 15px auto;
             border-bottom: 1px solid #ffa857;
 
-            .login_field{
+            .login_field {
                 height: 100%;
                 margin: auto;
                 font-size: 15px;
                 color: #ffa857;
-                background-color: rgba(0,0,0,0);
+                background-color: rgba(0, 0, 0, 0);
             }
-            ::placeholder{
+
+            ::placeholder {
                 color: #5e5e5e;
             }
         }
 
-        .login_check{
+        .login_check {
             display: flex;
             height: 45px;
             width: 80%;
-            margin: 15px auto ;
+            margin: 15px auto;
             align-items: center;
             justify-content: space-between;
             border-bottom: 1px solid #ffa857;
 
-            .register_field_check{
+            .register_field_check {
                 height: 100%;
                 width: 60%;
                 font-size: 15px;
                 color: #ffa857;
-                background-color: rgba(0,0,0,0);
+                background-color: rgba(0, 0, 0, 0);
 
             }
-            .van-cell:not(:last-child)::after{
+
+            .van-cell:not(:last-child)::after {
                 border-bottom: none !important;
             }
-            .register_word{
+
+            .register_word {
                 display: flex;
                 height: 100%;
                 justify-content: center;
@@ -124,12 +137,13 @@
                 font-size: 14px;
                 color: #5e5e5e;
             }
-            ::placeholder{
+
+            ::placeholder {
                 color: #5e5e5e;
             }
         }
 
-        .register_button{
+        .register_button {
             display: flex;
             height: 48px;
             width: 30%;
@@ -139,9 +153,9 @@
             align-items: center;
             border-radius: 12px;
             color: #ffa857;
-            font-weight: bolder;
         }
-        .register_change{
+
+        .register_change {
             display: flex;
             height: 25px;
             width: 80%;
@@ -149,9 +163,8 @@
             justify-content: center;
             font-size: 14px;
             color: #ffa857;
-            font-weight: bolder;
 
-            div{
+            div {
                 height: 25px;
                 margin: auto 8px;
             }

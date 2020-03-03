@@ -14,7 +14,7 @@
 
 
         <div class="setting_logo">
-            <a>logo</a>
+            <img :src="logo" alt=""/>
         </div>
 
         <div class="setting_frame">
@@ -48,7 +48,8 @@
 
 <script>
     import { NavBar, Icon, Switch, Cell} from 'vant';
-    import buttonAnimate from "../../../component/animate_button/index";
+    import buttonAnimate from '../../../component/animate_button/index';
+    import logo from '../../../assets/logo.png'
 
     export default {
         components: {
@@ -61,6 +62,7 @@
         data() {
             return {
                 animate_show: true,
+                logo: logo
 
             }
         },
@@ -113,6 +115,10 @@
             background-color: white;
             animation: slip_move 0.5s;
             animation-direction: alternate;
+
+            img{
+                height: 80px;
+            }
         }
 
         .setting_frame {
