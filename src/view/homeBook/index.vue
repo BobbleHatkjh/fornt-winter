@@ -30,15 +30,13 @@
 </template>
 
 <script>
-    import { Tabbar, TabbarItem, NavBar, Icon } from 'vant';
+    import { NavBar, Icon } from 'vant';
     import home_bac from '../../assets/home_bac.png'
 
     export default {
         components: {
             [NavBar.name]: NavBar,
-            [Tabbar.name]: Tabbar,
             [Icon.name]: Icon,
-            [TabbarItem.name]: TabbarItem
 
         },
         data(){

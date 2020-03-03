@@ -133,7 +133,7 @@
         .order_service{
             display: flex;
             height: 10px;
-            padding: 14px;
+            padding: 12px;
             flex-direction:row-reverse;
             font-size: 20px;
             color: white;

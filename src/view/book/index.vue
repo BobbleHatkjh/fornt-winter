@@ -235,7 +235,6 @@
                 (localStorage.getItem('animate_show') === 'true' && this.$store.state.page_change_status === 'next')
                     ? this.local_animate = true
                     : this.local_animate = false;
-                console.log(localStorage.getItem('animate_show'),this.$store.state.page_change_status,this.local_animate);
                 this.bac_obj.height = window.innerHeight + 'px';
                 this.date_chose = this.$store.state.date_origin;
             },
@@ -295,7 +294,7 @@
         destroyed() {
 
         },
-    };
+    }
 </script>
 
 <style lang="less">

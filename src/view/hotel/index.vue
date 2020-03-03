@@ -301,6 +301,10 @@
             padding: 2px 16px;
             background-color: rgba(255, 168, 87, 0.2);
         }
+        ::placeholder{
+            color: #ec9d4f;
+            font-size: 13px;
+        }
 
 
         .hotel_answer {

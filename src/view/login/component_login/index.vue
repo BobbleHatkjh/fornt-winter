@@ -31,7 +31,8 @@
 </template>
 
 <script>
-    import {Field} from 'vant';
+    import { Field } from 'vant';
+    import { accountLogin } from "../../../../services/interface";
 
     export default {
         components: {
@@ -67,11 +68,21 @@
             toRegisterButton(){
                 this.$emit('toRegister');
             },
-            loginButton(){
+            async loginButton(){
                 if(this.ifOk){
-                    this.$store.state.home_turn = 'book';
-                    localStorage.setItem('login','true');
-                    this.$router.push('home')
+                    const loginData = {
+                        method: 'POST',
+                        url: 'Students/Login',
+                        data: {
+                            id: this.phone_value,
+                            pwd: this.log_pass_value
+                        }
+                    };
+                    const ans = await accountLogin(loginData);
+                    console.log(ans);
+                    // this.$store.state.home_turn = 'book';
+                    // localStorage.setItem('login','true');
+                    // this.$router.push('home')
                 }
 
 
