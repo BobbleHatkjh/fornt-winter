@@ -10,16 +10,12 @@ module.exports = {
 //    </script>
 
   //axios域代理，解决axios跨域问题
-  // baseUrl: '/',
   devServer: {
     proxy: {
       '': {
         target: 'http://123.57.56.22:8090/',
         changeOrigin: true,
         ws: true,
-        pathRewrite: {
-
-        }
       }
     }
   }

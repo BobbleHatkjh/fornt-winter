@@ -51,6 +51,7 @@
         },
         methods: {
             fieldChange() {   // 输入框改变时触发
+                console.log(this.okStyle);
                 (this.phone_value !== '' && this.log_pass_value !== '')
                     ?
                     this.ifOk = true
