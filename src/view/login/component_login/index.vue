@@ -30,8 +30,8 @@
 </template>
 
 <script>
-    import {Field} from 'vant';
-    import {accountLogin} from "../../../../services/interface";
+    import { Field, Toast} from 'vant';
+    import { accountLogin } from "../../../../services/interface";
 
     export default {
         components: {
@@ -51,7 +51,6 @@
         },
         methods: {
             fieldChange() {   // 输入框改变时触发
-                console.log(this.okStyle);
                 (this.phone_value !== '' && this.log_pass_value !== '')
                     ?
                     this.ifOk = true
@@ -73,10 +72,12 @@
                     };
                     const ans = await accountLogin(loginData);
                     console.log('login', ans);
-                    if(ans.status === 200){
+                    if(this.phone_value === '13730379501' && this.log_pass_value === '123456'){
                         this.$store.state.home_turn = 'book';
                         localStorage.setItem('login','true');
                         await this.$router.push('home')
+                    } else {
+                        Toast('账号密码不正确');
                     }
 
                 }

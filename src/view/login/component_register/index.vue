@@ -37,7 +37,7 @@
 </template>
 
 <script>
-    import {Field} from 'vant';
+    import { Field } from 'vant';
 
     export default {
         components: {
@@ -70,8 +70,11 @@
                 this.$emit('toLogin');
             },
             loginButton() {
-                localStorage.setItem('login', 'true');
-                this.$router.push('home')
+                if(this.ifOk === true){
+                    this.$store.state.home_turn = 'book';
+                    localStorage.setItem('login','true');
+                    this.$router.push('home')
+                }
             }
         },
         created() {

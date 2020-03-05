@@ -39,6 +39,7 @@
                         <a>{{date_chose.in.month}}月{{date_chose.in.date}}日 </a>
                         <van-icon name="arrow" color="#ffa857" size="18"/>
                         <a>{{date_chose.out.month}}月{{date_chose.out.date}}日</a>
+<!--                        <a style="color: #646464;margin-left: 10px">大床房</a>-->
                     </div>
                     <div class="confirm_date_num">
                         <a>共{{date_chose.date_num}}晚</a>
@@ -46,6 +47,15 @@
                 </div>
             </div>
 
+            <!--房间类型-->
+            <line-dashed/>
+            <div class="confirm_hotel_type">
+                <div class="type_frame">
+                    <a style="margin-left: 16px;">精品大床房</a>
+                    <a style="margin-right: 16px;color: #737373">含两份早餐</a>
+                </div>
+
+            </div>
 
 
             <!--旅客信息-->
@@ -82,7 +92,7 @@
                     <a>金会员</a>
                     <a>已节省
                         <span style="color: #ffa857; font-weight: bolder">
-                            34.7¥
+                            14.7¥
                         </span>
                     </a>
                 </div>
@@ -101,7 +111,7 @@
                 <a>明细</a>
                 <van-icon name="arrow-up" />
             </div>
-            <div class="sure_button">
+            <div class="sure_button" @click="pressButton">
                 确认订单
             </div>
         </div>
@@ -152,6 +162,10 @@
             },
             onClickLeft() {
                 this.$router.go(-1)
+            },
+            pressButton(){
+                this.$store.state.home_turn = 'orders';
+                this.$router.push('home');
             },
 
             onSubmit() {
@@ -263,6 +277,26 @@
                             letter-spacing: 1px;
                         }
                     }
+                }
+            }
+
+            .confirm_hotel_type{
+                display: flex;
+                height: 48px;
+                width: 100%;
+                overflow: hidden;
+
+                .type_frame{
+                    display: flex;
+                    height: 100%;
+                    width: 93%;
+                    /*border-radius: 8px;*/
+                    margin: 0 auto;
+                    box-shadow: 0 0 8px #dedede;
+                    background-color: white;
+                    align-items: center;
+                    justify-content: space-between;
+                    font-size: 15px;
                 }
             }
 

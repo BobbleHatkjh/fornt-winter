@@ -164,12 +164,13 @@
 
         </div>
 
+        <!--预定动画-->
         <div class="detail_animate_out"
              v-if="click_state"
              :style="detail"
         >
             <div class="animate_div" :style="click_animate" >
-                <a>预定</a>
+                <a>处理中</a>
             </div>
         </div>
 

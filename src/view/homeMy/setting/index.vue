@@ -18,13 +18,13 @@
         </div>
 
         <div class="setting_frame">
-            <button-animate :div_style="'setting_check'" :animate_style="'touch_bac'">
+            <button-animate :div_style="'setting_check'" :animate_style="'touch_bac'" @click="settingSwitch('版本')">
                 检查版本
             </button-animate>
             <button-animate :div_style="'setting_check'" :animate_style="'touch_bac'">
                 关于应用
             </button-animate>
-            <button-animate :div_style="'setting_check'" :animate_style="'touch_bac'">
+            <button-animate :div_style="'setting_check'" :animate_style="'touch_bac'" @click="settingSwitch('缓存')">
                 清除缓存
             </button-animate>
             <van-cell center title="动画效果" style="color: #e6974f">
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-    import { NavBar, Icon, Switch, Cell} from 'vant';
+    import {NavBar, Icon, Switch, Cell, Toast} from 'vant';
     import buttonAnimate from '../../../component/animate_button/index';
     import logo from '../../../assets/logo.png'
 
@@ -78,9 +78,20 @@
             onClickLeft() {
                 this.$router.go(-1)
             },
-            logOut() {
+            logOut() {   // 退出
                 localStorage.setItem('login', 'false');
                 this.$router.push('login')
+            },
+            settingSwitch(way) {  // 清除缓存
+                switch(way){
+                    case '版本':
+                        Toast('当前版本号 1.04 已是最新版本');
+                        break;
+                    case '缓存':
+                        Toast('成功清除缓存');
+                        break;
+                }
+
             }
         },
 

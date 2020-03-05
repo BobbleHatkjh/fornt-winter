@@ -136,20 +136,30 @@
         <van-popup
                 v-model="show_pop_hotel"
                 position="bottom"
-                style="height: 500px"
+                style="height: 440px"
         >
-            <div>
-                <van-sidebar v-model="active_hotel" class="van-sidebar-item--select">
+            <div class="sidebar_div">
+                <van-sidebar v-model="active_hotel" class=" van-sidebar-item--select">
                     <van-sidebar-item title="热门" />
                     <van-sidebar-item title="经济连锁" />
                     <van-sidebar-item title="高端连锁" />
                     <van-sidebar-item title="商务出行" />
                     <van-sidebar-item title="主题酒店" />
-                    <van-sidebar-item title="12313" />
+                    <van-sidebar-item title="其他" />
                 </van-sidebar>
+                <div class="sidebar_item" v-if="active_hotel === 0">
+                    <div class="sidebar_hotel_frame" @click="hanting = !hanting" :class="hanting && 'sidebar_hotel_select'">
+                        <a>汉庭酒店</a>
+                    </div>
+                    <div class="sidebar_hotel_frame" @click="rujia = !rujia" :class="rujia && 'sidebar_hotel_select'">
+                        <a>如家酒店</a>
+                    </div>
+                </div>
             </div>
             <div class="slider_hotel_button_frame">
-                <a>清空已选</a>
+                <button-animate :div_style="'slider_button'" :animate_style="'touch_bac'" @click="priceSelectChange('delete')">
+                    <a>清空已选</a>
+                </button-animate>
             </div>
         </van-popup>
 
@@ -170,12 +180,12 @@
                 />
             </div>
             <div class="pop_price_word">
-                <a>¥ 0</a>
-                <a>¥ 1000以上</a>
+                <a>¥ 100</a>
+                <a>不限</a>
             </div>
             <div class="pop_price_price">
                 <a>价格
-                    <span style="">¥ 0~500</span>
+                    <span style="">¥ 0~{{price_chose}}</span>
                 </a>
             </div>
         </van-popup>
@@ -188,10 +198,12 @@
     import {Row, Col, Icon, Cell, CellGroup, Calendar, NavBar, Area, Popup, Slider, Sidebar, SidebarItem, Tab, Tabs} from 'vant';
     import fakeHotel from '../../component/fake_hotel/index.vue';
     import book_bac from '../../assets/book_bac.png';
+    import buttonAnimate from "../../component/animate_button/index";
 
     export default {
         components: {
             fakeHotel,
+            buttonAnimate,
             [Row.name]: Row,
             [Col.name]: Col,
             [Icon.name]: Icon,
@@ -219,12 +231,17 @@
                 view_active: 0,  // 下方的浏览active
 
                 date_chose: {},  // 选择的日期
-                slider_value: 50, // 价格选择器
+                price_chose: 300, // 选择的价格
+                slider_value: 40, // 价格选择器
                 bac_obj: {
                     height: '',
                     background: "url('" + book_bac + "') no-repeat center center fixed",
                     backgroundSize: "cover"
-                }
+                },
+
+
+                hanting: false,
+                rujia: false
             }
         },
 
@@ -253,8 +270,6 @@
                 }
             },
 
-
-
             formatDate(date) {
                 return {
                     unicodeTime: Date.parse(date),
@@ -271,18 +286,49 @@
                 this.date_chose.in = this.formatDate(start);
                 this.date_chose.out = this.formatDate(end);
             },
-            showPop(what) {  // 弹出层
+            showPop(what) {  // 弹出层switch
                 switch (what) {
+                    // 价格选择
                     case 'price':
                         this.show_price = true;
                         break;
+                    // 酒店选择
                     case 'hotel':
                         this.show_pop_hotel = true;
                         break;
                 }
             },
-            priceChange(value){
-                console.log(value);
+            priceChange(value){    // 价格选择器 100 200 300 500 1000+
+                switch (value) {
+                    case 0:
+                        this.price_chose = 100;
+                        break;
+                    case 20:
+                        this.price_chose = 200;
+                        break;
+                    case 40:
+                        this.price_chose = 300;
+                        break;
+                    case 60:
+                        this.price_chose = 500;
+                        break;
+                    case 80:
+                        this.price_chose = 1000;
+                        break;
+                    case 100:
+                        this.price_chose = '不限';
+                        break;
+                }
+                // console.log(value);
+            },
+
+            priceSelectChange(way){
+                if(way === 'delete'){
+                    this.hanting = false;
+                    this.rujia = false
+                } else{
+                    this.show_pop_hotel = false;
+                }
             }
         },
 
@@ -298,6 +344,7 @@
 </script>
 
 <style lang="less">
+
     .book{
         width: 100%;
         user-select: none;
@@ -492,25 +539,82 @@
 
 
 
+        .sidebar_div{
+            display: flex;
+            width: 100%;
+            .van-sidebar{
+                width: 25%;
+            }
+            .van-sidebar-item{
+                /*background-color: rgb(225, 225, 225);*/
+                background-color: rgba(255, 168, 87, 0.9);
+                color: white;
+            }
+            .van-sidebar-item--select{
+                color: #ffa857;
+                border-color: #ffa857;
+                background-color: white;
+            }
+            .sidebar_item{
+                display: flex;
+                width: 75%;
+                padding-top: 20px;
+                justify-content: space-around;
 
-        .van-sidebar-item--select{
-            color: #ffa857;
-            border-color: #ffa857;
+                .sidebar_hotel_frame{
+                    display: flex;
+                    height: 40px;
+                    width: 95px;
+                    border-radius: 10px;
+                    border: 1px solid rgba(255, 168, 87, 0.7);
+                    justify-content: center;
+                    font-size: 14px;
+                    align-items: center;
+                }
+                .sidebar_hotel_select{
+                    background-color: rgba(255, 168, 87, 0.85);
+                    color: white;
+
+                }
+            }
         }
+
+
         .slider_hotel_button_frame{
             position: fixed;
             display: flex;
             bottom: 0;
             height: 50px;
             width: 100%;
-            justify-content: center;
-            align-items: center;
-            background-color: #ffa857;
 
-            a{
-                color: white;
-                font-weight: bolder;
+            .slider_button{
+                display: flex;
+                height: 100%;
+                width: 25%;
+                justify-content: center;
+                align-items: center;
+                background-color: rgba(255, 168, 87, 0.9);
+
+                a{
+                    color: white;
+                    font-size: 14px;
+                }
             }
+            .slider_sure_button{
+                display: flex;
+                height: 100%;
+                width: 75%;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                /*box-shadow: 0 0 2px #ffa857 inset;*/
+                background-color: #ffa857;
+            }
+            .touch_bac {
+                background-color: rgba(255, 168, 87, 0.7);
+            }
+
+
         }
 
 

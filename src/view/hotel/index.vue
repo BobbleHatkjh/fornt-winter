@@ -52,11 +52,13 @@
         <fake-book v-if="back_animate" />
 
 
+
         <!--酒店框架*N-->
         <div class="hotel_answer"
-             :style="hotel_ans"
+
              :class="back_animate && 'back_animate_css'"
         >
+<!--            <van-pull-refresh v-model="isLoading" @refresh="onRefresh" success-text="刷新成功"/>-->
             <!--返回动画用按钮-->
             <div class="back_animate_button" v-if="back_animate">
                 <a>搜 索</a>
@@ -78,7 +80,7 @@
                 >
                     <van-swipe-item
                             class="hotel_swipe"
-                            v-for="(hotelImg) in hotel.hotel_img"
+                            v-for="hotelImg in hotel.hotel_img"
                             :key="hotelImg"
                     >
                         <img :src="hotelImg" alt=""/>
@@ -127,13 +129,11 @@
 
 
 
-
-
     </div>
 </template>
 
 <script>
-    import {Tabbar, Icon, Field, TabbarItem, NavBar, Sticky, DropdownMenu, DropdownItem, Swipe, SwipeItem} from 'vant';
+    import { Tabbar, Icon, Field, TabbarItem, NavBar, Sticky, DropdownMenu, DropdownItem, Swipe, SwipeItem} from 'vant';
     import fakeDetail from '../../component/fake_detail';
     import fakeBook from '../../component/fake_book'
     import book_bac from '../../assets/book_bac.png';
@@ -152,6 +152,7 @@
             [DropdownItem.name]: DropdownItem,
             [Swipe.name]: Swipe,
             [SwipeItem.name]: SwipeItem,
+            // [PullRefresh.name]: PullRefresh,
         },
         data() {
             return {
@@ -180,6 +181,7 @@
                     height: '',
                 },
                 hotel_list: [],  // 酒店列表
+                isLoading: false,
                 check_bank: {
                     sort: {  // 排序方式
                         sort_value: 0,
@@ -187,16 +189,20 @@
                             {text: '推荐排序', value: 0},
                             {text: '好评排序', value: 1},
                             {text: '销量排序', value: 2},
+                            {text: '正序排序', value: 3},
+                            {text: '倒序排序', value: 4},
 
                         ]
                     },
                     value: {  // 价格
-                        value_value: 0,
+                        value_value: 2,
                         option: [
                             {text: '¥100以下', value: 0},
-                            {text: '¥200-300', value: 1},
-                            {text: '¥300-500', value: 2},
-                            {text: '¥500以上', value: 3},
+                            {text: '¥200以下', value: 1},
+                            {text: '¥300以下', value: 2},
+                            {text: '¥500以下', value: 3},
+                            {text: '¥1000以下', value: 4},
+                            {text: '不限', value: 5},
                         ]
                     },
                     distance: { // 距离
@@ -246,7 +252,13 @@
             onClickRight() {
                 console.log('地图');
             },
-            clickAnimate(hotel_id, index, ref) {
+            onRefresh() {  // 下啦刷新
+                setTimeout(() => {
+                    this.isLoading = false;
+                    this.count++;
+                }, 1000);
+            },
+            clickAnimate(hotel_id, index, ref) {  // 点击酒店的动画
                 this.click_status = true;
                 this.hotel_list[index].click = true;
                 this.hotel_ans.height = this.hotel.height;
@@ -257,18 +269,41 @@
                 }, 400)
             },
 
-            async hotelClick(hotel_id, index, ref) {
+            async hotelClick(hotel_id, index, ref) {  // 点击酒店
                 this.local_animate ? await this.clickAnimate(hotel_id, index, ref)
                     : await this.$router.push('detail');
+            },
+
+            scroll() {
+                window.onscroll = () => {
+                    console.log('2222');
+                    let bottomwindow =
+                        document.documentElement.scrollTop + window.innerHeight ===
+                        document.documentElement.offsetHeight; //scrollTop滚动条的垂直位置，innerheight	返回窗口的文档显示区的高度。
+                    console.log(bottomwindow);
+                    console.log(document.documentElement.offsetHeight); //返回该元素的像素高度,高度包含该元素的垂直内边距和边框,且是一个整数
+
+                    if (bottomwindow) {
+                        //如果滚动最底部就变为true
+                        console.log('到底了')
+                    }
+                };
             }
+
+
         },
 
+        // mounted() {
+        //     this.scroll();
+        //     // window.addEventListener('scroll',this.scroll);
+        // },
 
         created() {
             this.getHeight();
+
         },
         destroyed() {
-
+            window.removeEventListener('scroll', this.scroll);  //监听页面滚动事件
         },
     };
 </script>
@@ -311,6 +346,7 @@
 
 
         .hotel_answer {
+            height: 100%;
             width: 100%;
             background-color: #f5f5f5;
             overflow: auto;
@@ -433,9 +469,9 @@
             -webkit-animation-direction: alternate;
         }
 
-        .hotel_answer::-webkit-scrollbar {
-            width: 0;
-        }
+        /*.hotel_answer::-webkit-scrollbar {*/
+        /*    width: 0;*/
+        /*}*/
 
     }
 
